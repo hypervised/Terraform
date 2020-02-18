@@ -4,7 +4,7 @@ provider "aws" {
 
   version = "~> 2.0"
 
-  region  = "us-east-1"
+  region  = var.region
 
 }
 
@@ -47,12 +47,12 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "ubuntu_server" {
   ami  = "${data.aws_ami.ubuntu.id}"
-  instance_type = "t2.micro"
-  key_name = "MyKeyPair"
-  subnet_id = "subnet-12345"
-  security_groups = ["sg-12345"]
+  instance_type = var.itype
+  key_name = var.keypair
+  subnet_id = var.snid
+  security_groups = [var.sgid]
   tags = {
-  Name = "tf-ubuntu"
+  Name = var.nametag
   }
 
 }

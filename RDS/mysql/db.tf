@@ -23,4 +23,5 @@ resource "aws_db_instance" "default" {
   password             = var.dbpw
   parameter_group_name = "default.mysql5.7"
   multi_az = true
+  final_snapshot_identifier = "final"
 }
